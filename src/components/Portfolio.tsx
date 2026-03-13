@@ -29,11 +29,11 @@ const Portfolio = () => {
               <div className="glass-card overflow-hidden h-100 p-0 border-0 shadow-lg">
                 <div className="ratio ratio-16x9 position-relative overflow-hidden group">
                   <img src={project.thumb} alt={project.title} className="object-fit-cover transition-transform duration-700 hover-scale-110" style={{ transition: 'transform 0.7s ease' }} />
-                  <div className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center opacity-0 hover-opacity-100 transition-opacity" style={{ background: 'rgba(8, 5, 17, 0.6)', backdropFilter: 'blur(4px)' }}>
+                  <div className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center opacity-0 hover-opacity-100 transition-opacity" style={{ background: 'rgba(0, 0, 0, 0.7)', backdropFilter: 'blur(4px)' }}>
                      <button className="btn btn-glass">View Project</button>
                   </div>
                 </div>
-                <div className="p-4 bg-surface" style={{ background: 'rgba(30, 20, 50, 0.3)' }}>
+                <div className="p-4 bg-surface" style={{ background: 'var(--bg-surface)' }}>
                   <span className="text-gradient small fw-700 mb-2 d-block text-uppercase letter-spacing-1">{project.type}</span>
                   <h5 className="fw-700 mb-0 text-white">{project.title}</h5>
                 </div>

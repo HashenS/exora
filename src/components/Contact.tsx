@@ -48,7 +48,7 @@ const Contact = () => {
                whileInView={{ opacity: 1, scale: 1 }}
                viewport={{ once: true }}
                className="glass-card p-5"
-               style={{ background: 'rgba(18, 12, 36, 0.4)' }}
+               style={{ background: 'var(--bg-surface)' }}
              >
                 <form>
                   <div className="row g-4">

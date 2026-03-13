@@ -1,20 +1,31 @@
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
+import ShinyText from './ShinyText';
+import RippleGrid from './RippleGrid';
 
 const Hero = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+
   return (
-    <section className="hero-section position-relative overflow-hidden pt-5 pb-4 py-lg-6" style={{ minHeight: '80vh', display: 'flex', alignItems: 'center' }}>
-      {/* Dynamic Purple Background */}
-      <div className="position-absolute top-0 start-0 w-100 h-100" style={{ zIndex: -1, background: 'radial-gradient(circle at 70% 30%, #2e1065 0%, #0c0a09 100%)' }}>
-        <div className="position-absolute w-100 h-100" style={{ 
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238b5cf6' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          opacity: 0.3 
-        }}></div>
-        <div className="position-absolute bottom-0 start-0 w-100 h-50" style={{ background: 'linear-gradient(to top, #080511 0%, transparent 100%)' }}></div>
+    <section ref={sectionRef} className="hero-section position-relative overflow-hidden pt-5 pb-4 py-lg-6" style={{ minHeight: '80vh', display: 'flex', alignItems: 'center' }}>
+      {/* Black Professional Background */}
+      <div className="position-absolute top-0 start-0 w-100 h-100" style={{ zIndex: -1, background: '#000000' }}>
+        <RippleGrid
+          enableRainbow={false}
+          gridColor="#8b5cf6"
+          rippleIntensity={0.06}
+          gridSize={12}
+          gridThickness={25}
+          mouseInteraction={true}
+          mouseInteractionRadius={1.8}
+          opacity={0.6}
+          interactiveTargetRef={sectionRef}
+        />
       </div>
 
       <div className="container">
         <div className="row align-items-center">
-          <div className="col-lg-8">
+          <div className="col-lg-7">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -36,6 +47,37 @@ const Hero = () => {
                   Let's Talk
                 </button>
               </div>
+            </motion.div>
+          </div>
+
+          <div className="col-lg-5 text-center text-lg-end mt-5 mt-lg-0">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.3 }}
+              className="d-inline-block"
+              style={{ background: 'transparent' }}
+            >
+              <ShinyText
+                text="exora"
+                speed={3}
+                delay={0}
+                color="#f8fafc"
+                shineColor="#8b5cf6"
+                spread={90}
+                direction="left"
+                yoyo={true}
+                pauseOnHover={true}
+                disabled={false}
+                className="fw-900"
+                style={{ 
+                  fontFamily: '"Orbitron", sans-serif', 
+                  fontSize: '8rem', 
+                  letterSpacing: '0.05em',
+                  textTransform: 'lowercase',
+                  lineHeight: '1'
+                }}
+              />
             </motion.div>
           </div>
         </div>

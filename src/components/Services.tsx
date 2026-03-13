@@ -33,7 +33,7 @@ const Services = () => {
             Digital <span className="text-gradient">Excellence</span>
           </motion.h2>
           
-          <div className="d-inline-flex p-2 glass-card mb-4" style={{ borderRadius: '40px', background: 'rgba(30, 20, 50, 0.6)' }}>
+          <div className="d-inline-flex p-2 glass-card mb-4" style={{ borderRadius: '40px', background: 'var(--bg-surface-2)' }}>
             <button 
               onClick={() => setActiveTab('drone')}
               className={`btn px-4 py-2 border-0 ${activeTab === 'drone' ? 'text-white shadow-sm' : 'text-muted'}`}

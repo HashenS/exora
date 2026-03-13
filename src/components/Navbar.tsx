@@ -1,38 +1,84 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import GooeyNav from './GooeyNav';
 
 const Navbar = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  
+  const navItems = [
+    { label: 'Home', href: '#', id: 'hero' },
+    { label: 'Services', href: '#services', id: 'services' },
+    { label: 'Pricing', href: '#pricing', id: 'pricing' },
+    { label: 'Portfolio', href: '#portfolio', id: 'portfolio' },
+    { label: 'Contact', href: '#contact', id: 'contact' }
+  ];
+
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-50% 0px -50% 0px', // Detect when middle of section crosses middle of viewport
+      threshold: 0
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const index = navItems.findIndex(item => item.id === entry.target.id);
+          if (index !== -1) {
+            setActiveIndex(index);
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    
+    // Explicitly observe all sections
+    navItems.forEach(item => {
+      const element = document.getElementById(item.id);
+      if (element) observer.observe(element);
+    });
+
+    // Handle scroll to top for "Home" if no section is active or at top
+    const handleScroll = () => {
+      if (window.scrollY < 100) {
+        setActiveIndex(0);
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <motion.nav 
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className="navbar navbar-expand-lg fixed-top"
       style={{
-        background: 'rgba(8, 5, 17, 0.6)',
+        background: 'rgba(0, 0, 0, 0.75)',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
-        borderBottom: '1px solid rgba(139, 92, 246, 0.1)',
-        padding: '1.2rem 0'
+        borderBottom: '1px solid rgba(139, 92, 246, 0.15)',
+        padding: '0.6rem 0'
       }}
     >
-      <div className="container">
-        <a className="navbar-brand d-flex align-items-center" href="#">
-          <span className="fw-800 text-white" style={{ letterSpacing: '2px', fontSize: '1.5rem' }}>
-            EXO<span className="text-gradient">RA</span>
-          </span>
-        </a>
-        <button className="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-          <span className="navbar-toggler-icon" style={{ filter: 'invert(1) hue-rotate(250deg)' }}></span>
-        </button>
-        <div id="nav" className="collapse navbar-collapse">
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-            {['Services', 'Pricing', 'Portfolio', 'Contact'].map((item) => (
-              <li className="nav-item" key={item}>
-                <a className="nav-link text-white-50 px-3 fs-6 hover-text-vibrant" href={`#${item.toLowerCase()}`} style={{ fontWeight: 500, transition: 'all 0.3s' }}>
-                  {item}
-                </a>
-              </li>
-            ))}
-          </ul>
+      <div className="container d-flex justify-content-center">
+        <div className="d-flex align-items-center">
+          <GooeyNav 
+            items={navItems}
+            activeIndex={activeIndex}
+            onActiveChange={setActiveIndex}
+            particleCount={9}
+            particleDistances={[90, 10]}
+            particleR={200}
+            animationTime={600}
+            timeVariance={200}
+            colors={[1, 2, 3, 1, 2, 3, 1, 4]}
+          />
         </div>
       </div>
     </motion.nav>

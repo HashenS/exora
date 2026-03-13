@@ -18,7 +18,7 @@ const Pricing = () => {
 
         <div className="row g-4 justify-content-center">
           {dronePlans.map((plan, idx) => (
-            <motion.div 
+            <motion.div
               key={idx}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -26,23 +26,24 @@ const Pricing = () => {
               viewport={{ once: true }}
               className="col-lg-4"
             >
-              <div className={`glass-card h-100 p-5 position-relative ${plan.popular ? 'border-accent' : ''}`} 
-                   style={{ 
-                     border: plan.popular ? '2px solid var(--accent-purple)' : '1px solid var(--glass-border)',
-                     background: plan.popular ? 'rgba(139, 92, 246, 0.08)' : 'var(--glass-bg)'
-                   }}>
+
+              <div className={`glass-card h-100 p-5 position-relative ${plan.popular ? 'border-accent' : ''}`}
+                style={{
+                  border: plan.popular ? '2px solid var(--accent-purple)' : '1px solid var(--glass-border)',
+                  background: plan.popular ? 'rgba(139, 92, 246, 0.12)' : 'var(--glass-bg)'
+                }}>
                 {plan.popular && (
-                  <span className="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-purple px-4 py-2 mt-2" 
-                        style={{ background: 'var(--accent-purple)', fontSize: '0.8rem', letterSpacing: '0.05em' }}>
+                  <span className="position-absolute top-0 start-50 translate-middle badge rounded-pill px-4 py-2"
+                    style={{ background: 'var(--accent-purple)', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.1em', transform: 'translate(-50%, -50%)' }}>
                     MOST POPULAR
                   </span>
                 )}
-                <h3 className="fw-800 mb-2 mt-2 text-white">{plan.name}</h3>
+                <h3 className="fw-800 mb-2 mt-4 text-white">{plan.name}</h3>
                 <div className="d-flex align-items-baseline mb-5">
                   <span className="h4 text-secondary mb-0 fw-400">RS</span>
                   <span className="display-4 fw-800 mx-2 text-white">{plan.price}</span>
                 </div>
-                
+
                 <div className="mb-5">
                   {plan.features.map((feature, i) => (
                     <div key={i} className="mb-4 d-flex align-items-start">
@@ -53,7 +54,7 @@ const Pricing = () => {
                     </div>
                   ))}
                 </div>
-                
+
                 <button className={`btn w-100 py-3 ${plan.popular ? 'btn-gold shadow-lg' : 'btn-glass'}`} style={{ borderRadius: '16px' }}>
                   Choose Plan
                 </button>

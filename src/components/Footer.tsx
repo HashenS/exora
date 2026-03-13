@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="py-4 mt-4" style={{ background: 'var(--bg-surface)', borderTop: '1px solid rgba(139, 92, 246, 0.1)' }}>
+    <footer className="py-4 mt-4" style={{ background: '#000000', borderTop: '1px solid rgba(139, 92, 246, 0.15)' }}>
       <div className="container">
         <div className="row g-4 align-items-center">
           <div className="col-md-4 text-center text-md-start">
