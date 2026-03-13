@@ -7,18 +7,19 @@ const Hero = () => {
   const sectionRef = useRef<HTMLElement>(null);
 
   return (
-    <section ref={sectionRef} className="hero-section position-relative overflow-hidden pt-5 pb-4 py-lg-6" style={{ minHeight: '80vh', display: 'flex', alignItems: 'center' }}>
+    <section ref={sectionRef} className="hero-section position-relative overflow-hidden d-flex align-items-center" style={{ minHeight: '100vh' }}>
       {/* Black Professional Background */}
       <div className="position-absolute top-0 start-0 w-100 h-100" style={{ zIndex: -1, background: '#000000' }}>
         <RippleGrid
           enableRainbow={false}
           gridColor="#8b5cf6"
-          rippleIntensity={0.06}
-          gridSize={12}
-          gridThickness={25}
+          rippleIntensity={0.1}
+          gridSize={20}
+          gridThickness={35}
+          fadeDistance={2.5}
           mouseInteraction={true}
-          mouseInteractionRadius={1.8}
-          opacity={0.6}
+          mouseInteractionRadius={2.5}
+          opacity={0.5}
           interactiveTargetRef={sectionRef}
         />
       </div>

@@ -62,7 +62,6 @@ const Navbar = () => {
         background: 'rgba(0, 0, 0, 0.75)',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
-        borderBottom: '1px solid rgba(139, 92, 246, 0.15)',
         padding: '0.6rem 0'
       }}
     >
