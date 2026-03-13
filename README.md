@@ -1,55 +1,73 @@
-Exora — Creative Studio (Sri Lanka)
+# React + TypeScript + Vite
 
-A simple, fast, mobile-first static website for Exora to showcase drone videography services and web development work. Built with Bootstrap 5 and deployable on GitHub Pages for free.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Features
-- Responsive Bootstrap 5.3 layout
-- Brand gradient (deep blue → purple), gold accents, white text
-- Sections: Hero, Services, Pricing, Portfolio, About/License, Contact
-- TikTok link for growth; WhatsApp note (to add once eligible)
-- SEO-ready: meta tags, Open Graph, fast loading, lazy-loaded images
-- Easy to extend as your portfolio grows
+Currently, two official plugins are available:
 
-Getting Started
-1. Edit content in `index.html` (texts, links, images).
-2. Replace the placeholder logo by saving your circular Exora logo as `assets/img/logo.png`.
-3. Replace Unsplash placeholder images in the Portfolio section with your own.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-Local Preview
-Open `index.html` directly in your browser, or use a simple static server (recommended for correct caching):
+## React Compiler
 
-```bash
-# Using Python 3
-cd D:/ExoraSite
-python -m http.server 8000
-# Then open http://localhost:8000
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
+
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
 
-Deploy to GitHub Pages (Free)
-1. Create a new GitHub repo named `exora-site` (or any name).
-2. Push this folder's contents to the repo's `main` branch.
-3. In GitHub > Settings > Pages: set Source to `Deploy from a branch`, Branch to `main / root`.
-4. Wait 1–2 minutes. Your site will be live at the GitHub Pages URL shown.
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-Optional: Add a custom domain later via the same Pages settings.
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-Editing Notes
-- Colors and spacing are defined in `assets/css/styles.css` via CSS variables.
-- Images are lazy-loaded (`loading="lazy"`). Keep image sizes optimized for speed.
-- Scripts are deferred. Keep third-party scripts minimal.
-
-License & Credits
-- Bootstrap 5.3+ (MIT)
-- Placeholder images from Unsplash (replace as you build your portfolio)
-
-
-
-
-
-
-
-
-
-
-
-
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
