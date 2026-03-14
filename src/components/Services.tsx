@@ -23,96 +23,99 @@ const Services = () => {
   const currentServices = activeTab === 'drone' ? droneServices : webServices;
 
   return (
-    <section id="services" className="py-5 position-relative">
+    <section id="services" className="min-vh-100 d-flex align-items-center py-5 position-relative">
       <div className="container">
-        <div className="text-center mb-5">
-          <motion.h2
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="display-4 fw-bold mb-3"
-          >
-            Digital <span className="text-gradient">Excellence</span>
-          </motion.h2>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="text-center mb-5">
+            <h2 className="display-4 fw-bold mb-3">
+              Digital <span className="text-gradient">Excellence</span>
+            </h2>
 
-          <div className="d-inline-flex p-2 glass-card mb-4" style={{ borderRadius: '40px', background: 'var(--bg-surface-2)' }}>
-            <button
-              onClick={() => setActiveTab('drone')}
-              className={`btn px-4 py-2 border-0 ${activeTab === 'drone' ? 'text-white shadow-sm' : 'text-muted'}`}
-              style={{
-                borderRadius: '32px',
-                transition: 'all 0.3s ease',
-                background: activeTab === 'drone' ? 'var(--accent-purple)' : 'transparent',
-                fontWeight: 600
-              }}
-            >
-              Drone Services
-            </button>
-            <button
-              onClick={() => setActiveTab('web')}
-              className={`btn px-4 py-2 border-0 ${activeTab === 'web' ? 'text-white shadow-sm' : 'text-muted'}`}
-              style={{
-                borderRadius: '32px',
-                transition: 'all 0.3s ease',
-                background: activeTab === 'web' ? 'var(--accent-purple)' : 'transparent',
-                fontWeight: 600
-              }}
-            >
-              Web Solutions
-            </button>
-          </div>
-        </div>
-
-        <div className="row g-4">
-          <AnimatePresence mode="wait">
-            {currentServices.map((service, idx) => (
-              <motion.div
-                key={`${activeTab}-${idx}`}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="col-md-6 col-lg-3"
+            <div className="d-inline-flex p-2 glass-card mb-4" style={{ borderRadius: '40px', background: 'var(--bg-surface-2)' }}>
+              <button
+                onClick={() => setActiveTab('drone')}
+                className={`btn px-4 py-2 border-0 ${activeTab === 'drone' ? 'text-white shadow-sm' : 'text-muted'}`}
+                style={{
+                  borderRadius: '32px',
+                  transition: 'all 0.3s ease',
+                  background: activeTab === 'drone' ? 'var(--accent-purple)' : 'transparent',
+                  fontWeight: 600
+                }}
               >
-                <div 
-                  className="glass-card h-100 p-4 p-xl-5 text-center hover-lift hover-zoom-container position-relative overflow-hidden d-flex flex-column justify-content-center"
-                  style={{ minHeight: '320px' }}
+                Drone Services
+              </button>
+              <button
+                onClick={() => setActiveTab('web')}
+                className={`btn px-4 py-2 border-0 ${activeTab === 'web' ? 'text-white shadow-sm' : 'text-muted'}`}
+                style={{
+                  borderRadius: '32px',
+                  transition: 'all 0.3s ease',
+                  background: activeTab === 'web' ? 'var(--accent-purple)' : 'transparent',
+                  fontWeight: 600
+                }}
+              >
+                Web Solutions
+              </button>
+            </div>
+          </div>
+
+          <div className="row g-4">
+            <AnimatePresence mode="wait">
+              {currentServices.map((service, idx) => (
+                <motion.div
+                  key={`${activeTab}-${idx}`}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className="col-md-6 col-lg-3"
                 >
-                  {service.image && (
-                    <>
-                      <div 
-                        className="card-bg-image hover-zoom-image position-absolute top-0 start-0 w-100 h-100" 
-                        style={{ 
-                          backgroundImage: `url('${service.image}')`, 
-                          backgroundSize: 'cover', 
-                          backgroundPosition: 'center',
-                          zIndex: 0
-                        }}
-                      />
-                      <div 
-                        className="position-absolute top-0 start-0 w-100 h-100" 
-                        style={{ 
-                          background: 'rgba(10, 10, 15, 0.75)', 
-                          backdropFilter: 'blur(3px)', 
-                          zIndex: 1,
-                          transition: 'background 0.3s ease'
-                        }}
-                      ></div>
-                    </>
-                  )}
-                  <div className="position-relative" style={{ zIndex: 2 }}>
-                    {!service.image && (
-                      <div className="mb-4 text-gradient d-inline-block" style={{ fontSize: '2.5rem' }}>
-                        {service.icon}
-                      </div>
+                  <div 
+                    className="glass-card h-100 p-4 p-xl-5 text-center hover-lift hover-zoom-container position-relative overflow-hidden d-flex flex-column justify-content-center"
+                    style={{ minHeight: '320px' }}
+                  >
+                    {service.image && (
+                      <>
+                        <div 
+                          className="card-bg-image hover-zoom-image position-absolute top-0 start-0 w-100 h-100" 
+                          style={{ 
+                            backgroundImage: `url('${service.image}')`, 
+                            backgroundSize: 'cover', 
+                            backgroundPosition: 'center',
+                            zIndex: 0
+                          }}
+                        />
+                        <div 
+                          className="position-absolute top-0 start-0 w-100 h-100" 
+                          style={{ 
+                            background: 'rgba(10, 10, 15, 0.75)', 
+                            backdropFilter: 'blur(3px)', 
+                            zIndex: 1,
+                            transition: 'background 0.3s ease'
+                          }}
+                        ></div>
+                      </>
                     )}
-                    <h4 className="fw-bold mb-3 text-white">{service.title}</h4>
-                    <p className="text-secondary small mb-0 lh-lg">{service.desc}</p>
+                    <div className="position-relative" style={{ zIndex: 2 }}>
+                      {!service.image && (
+                        <div className="mb-4 text-gradient d-inline-block" style={{ fontSize: '2.5rem' }}>
+                          {service.icon}
+                        </div>
+                      )}
+                      <h4 className="fw-bold mb-3 text-white">{service.title}</h4>
+                      <p className="text-secondary small mb-0 lh-lg">{service.desc}</p>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
