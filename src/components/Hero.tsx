@@ -82,7 +82,7 @@ const Hero = () => {
                 className="fw-900"
                 style={{
                   fontFamily: '"Orbitron", sans-serif',
-                  fontSize: '8rem',
+                  fontSize: 'clamp(4rem, 15vw, 8rem)',
                   letterSpacing: '0.05em',
                   textTransform: 'lowercase',
                   lineHeight: '1'

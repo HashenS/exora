@@ -4,9 +4,10 @@ import GooeyNav from './GooeyNav';
 
 const Navbar = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  
+
   const navItems = [
     { label: 'Home', href: '#', id: 'hero' },
+    { label: 'About Us', href: '#about', id: 'about' },
     { label: 'Services', href: '#services', id: 'services' },
     { label: 'Pricing', href: '#pricing', id: 'pricing' },
     { label: 'Portfolio', href: '#portfolio', id: 'portfolio' },
@@ -32,7 +33,7 @@ const Navbar = () => {
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
-    
+
     // Explicitly observe all sections
     navItems.forEach(item => {
       const element = document.getElementById(item.id);
@@ -54,7 +55,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <motion.nav 
+    <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className="navbar navbar-expand-lg fixed-top"
@@ -67,7 +68,7 @@ const Navbar = () => {
     >
       <div className="container d-flex justify-content-center">
         <div className="d-flex align-items-center">
-          <GooeyNav 
+          <GooeyNav
             items={navItems}
             activeIndex={activeIndex}
             onActiveChange={setActiveIndex}

@@ -46,7 +46,7 @@ export default function About() {
 
                   <div className="flex flex-col sm:flex-row sm:items-center gap-4 lg:gap-6 mb-8 lg:mb-10">
                     <div>
-                      <h3 className="h2 fw-bold text-white mb-1"> <span className="text-gradient">Hashen Shehara </span></h3>
+                      <h3 className="fw-bold text-white mb-1" style={{ fontSize: 'clamp(1.5rem, 5vw, 2.5rem)' }}> <span className="text-gradient">Hashen Shehara </span></h3>
                       <div className="flex items-center gap-3">
                         <div className="w-8 h-[1px] bg-purple-500" />
                         <span className="text-purple-400 fw-bold underline-none text-uppercase tracking-widest" style={{ fontSize: '0.7rem' }}>Founder & Creative Lead</span>
