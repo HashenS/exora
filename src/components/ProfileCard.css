@@ -245,23 +245,32 @@
 }
 
 .pc-avatar-content {
-  mix-blend-mode: luminosity;
-  overflow: visible;
-  transform: translateZ(2);
+  mix-blend-mode: normal;
+  overflow: hidden;
   backface-visibility: hidden;
+  border-radius: var(--card-radius);
+  z-index: 2;
+}
+
+.pc-avatar-content::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 70%, rgba(0,0,0,0.7) 100%);
+  z-index: 3;
+  pointer-events: none;
 }
 
 .pc-avatar-content .avatar {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   position: absolute;
-  left: 50%;
-  transform-origin: 50% 100%;
-  transform: translateX(calc(-50% + (var(--pointer-from-left) - 0.5) * 6px)) translateZ(0)
-    scaleY(calc(1 + (var(--pointer-from-top) - 0.5) * 0.02)) scaleX(calc(1 + (var(--pointer-from-left) - 0.5) * 0.01));
-  bottom: -1px;
+  left: 0;
+  top: 0;
+  transform: none !important;
   backface-visibility: hidden;
   will-change: transform;
-  transition: transform 120ms ease-out;
 }
 
 .pc-avatar-content::before {
