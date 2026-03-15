@@ -4,7 +4,7 @@ import ColorBends from './ColorBends';
 
 const Hero = () => {
   return (
-    <section className="hero-section position-relative overflow-hidden d-flex align-items-center" style={{ minHeight: '100vh' }}>
+    <section id="hero" className="hero-section position-relative overflow-hidden d-flex align-items-center" style={{ minHeight: '100vh' }}>
       {/* ColorBends Background */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 0, background: '#000' }}>
         <ColorBends
@@ -44,10 +44,16 @@ const Hero = () => {
                 Crafting premium digital experiences and aerial stories that captivate.
               </p>
               <div className="d-flex flex-wrap gap-3">
-                <button className="btn btn-purple px-5 py-3 shadow-lg">
+                <button 
+                  className="btn btn-purple px-5 py-3 shadow-lg"
+                  onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
+                >
                   Explore Packages
                 </button>
-                <button className="btn btn-glass px-5 py-3">
+                <button 
+                  className="btn btn-glass px-5 py-3"
+                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                >
                   Let's Talk
                 </button>
               </div>
