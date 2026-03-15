@@ -7,6 +7,7 @@ import Portfolio from './components/Portfolio';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Particles from './components/Particles';
+import WhatsAppButton from './components/WhatsAppButton';
 import './App.css';
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }
