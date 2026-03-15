@@ -6,17 +6,17 @@ const Services = () => {
   const [activeTab, setActiveTab] = useState<'drone' | 'web'>('drone');
 
   const droneServices = [
-    { icon: <Camera />, image: '/Aerial Photography.png', title: 'Aerial Photography', desc: 'Stunning high-resolution imagery tailored for real estate, commercial, and creative projects.' },
-    { icon: <Zap />, image: '/Cinamatic edit.png', title: 'Cinematic Edits', desc: 'Dynamic post-production with immersive sound design for high-impact social media content.' },
-    { icon: <Layers />, image: '/DJI_20251021093347_0038_D.JPG', title: 'Event Coverage', desc: 'Capturing the scale and emotion of your special moments from breathtaking aerial perspectives.' },
-    { icon: <Globe />, image: '/Custom orders.jpg', title: 'Custom Orders', desc: 'Have a unique idea? I accept custom drone projects tailored to your specific needs.' },
+    { icon: <Camera />, image: '/Aerial Photography.webp', title: 'Aerial Photography', desc: 'Stunning high-resolution imagery tailored for real estate, commercial, and creative projects.' },
+    { icon: <Zap />, image: '/Cinamatic edit.webp', title: 'Cinematic Edits', desc: 'Dynamic post-production with immersive sound design for high-impact social media content.' },
+    { icon: <Layers />, image: '/DJI_20251021093347_0038_D.webp', title: 'Event Coverage', desc: 'Capturing the scale and emotion of your special moments from breathtaking aerial perspectives.' },
+    { icon: <Globe />, image: '/Custom orders.webp', title: 'Custom Orders', desc: 'Have a unique idea? I accept custom drone projects tailored to your specific needs.' },
   ];
 
   const webServices = [
-    { icon: <Code />, image: '/web_dev_custom_development_1773416151517.png', title: 'Custom Development', desc: 'Building high-performance, scalable web applications with the latest modern technologies.' },
-    { icon: <Layers />, image: '/web_dev_premium_ui_ux_1773416194482.png', title: 'Premium UI/UX', desc: 'Meticulously crafted user interfaces that balance aesthetic beauty with functional excellence.' },
-    { icon: <Globe />, image: '/web_dev_digital_strategy_1773416247412.png', title: 'Digital Strategy', desc: 'Comprehensive SEO and brand positioning to maximize your organic growth and visibility.' },
-    { icon: <Cpu />, image: '/web_dev_maintenance_1773416501402.png', title: 'Web Maintenance', desc: 'Ensuring your digital presence remains secure, updated, and optimized for peak performance.' },
+    { icon: <Code />, image: '/web_dev_custom_development_1773416151517.webp', title: 'Custom Development', desc: 'Building high-performance, scalable web applications with the latest modern technologies.' },
+    { icon: <Layers />, image: '/web_dev_premium_ui_ux_1773416194482.webp', title: 'Premium UI/UX', desc: 'Meticulously crafted user interfaces that balance aesthetic beauty with functional excellence.' },
+    { icon: <Globe />, image: '/web_dev_digital_strategy_1773416247412.webp', title: 'Digital Strategy', desc: 'Comprehensive SEO and brand positioning to maximize your organic growth and visibility.' },
+    { icon: <Cpu />, image: '/web_dev_maintenance_1773416501402.webp', title: 'Web Maintenance', desc: 'Ensuring your digital presence remains secure, updated, and optimized for peak performance.' },
   ];
 
 
@@ -75,26 +75,26 @@ const Services = () => {
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
                   className="col-md-6 col-lg-3"
                 >
-                  <div 
+                  <div
                     className="glass-card h-100 p-4 p-xl-5 text-center hover-lift hover-zoom-container position-relative overflow-hidden d-flex flex-column justify-content-center"
                     style={{ minHeight: '320px' }}
                   >
                     {service.image && (
                       <>
-                        <div 
-                          className="card-bg-image hover-zoom-image position-absolute top-0 start-0 w-100 h-100" 
-                          style={{ 
-                            backgroundImage: `url('${service.image}')`, 
-                            backgroundSize: 'cover', 
+                        <div
+                          className="card-bg-image hover-zoom-image position-absolute top-0 start-0 w-100 h-100"
+                          style={{
+                            backgroundImage: `url('${service.image}')`,
+                            backgroundSize: 'cover',
                             backgroundPosition: 'center',
                             zIndex: 0
                           }}
                         />
-                        <div 
-                          className="position-absolute top-0 start-0 w-100 h-100" 
-                          style={{ 
-                            background: 'rgba(10, 10, 15, 0.75)', 
-                            backdropFilter: 'blur(3px)', 
+                        <div
+                          className="position-absolute top-0 start-0 w-100 h-100"
+                          style={{
+                            background: 'rgba(10, 10, 15, 0.75)',
+                            backdropFilter: 'blur(3px)',
                             zIndex: 1,
                             transition: 'background 0.3s ease'
                           }}

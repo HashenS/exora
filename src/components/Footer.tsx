@@ -5,7 +5,7 @@ const Footer = () => {
         <div className="row g-4 align-items-center">
           <div className="col-md-6 text-center text-md-start">
             <img
-              src="/Logo Transparent.png"
+              src="/Logo Transparent.webp"
               alt="Exora Logo"
               style={{ height: '40px', width: 'auto', marginBottom: '1.5rem' }}
             />

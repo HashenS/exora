@@ -84,7 +84,7 @@ export default function About() {
                   handle="hashen"
                   status="Online"
                   contactText="Inquiry"
-                  avatarUrl="/assets/avatar.jpg"
+                  avatarUrl="/assets/avatar.webp"
                   showUserInfo
                   enableTilt={true}
                   enableMobileTilt
@@ -92,7 +92,7 @@ export default function About() {
                     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                   }}
                   behindGlowColor="rgba(168, 85, 247, 0.2)"
-                  iconUrl="/assets/iconpattern.png"
+                  iconUrl="/assets/iconpattern.webp"
                   behindGlowEnabled={false}
                   innerGradient="linear-gradient(135deg, rgba(10, 5, 25, 0.95) 0%, rgba(88, 28, 135, 0.3) 100%)"
                 />
