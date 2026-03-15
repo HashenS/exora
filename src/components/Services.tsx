@@ -81,14 +81,15 @@ const Services = () => {
                   >
                     {service.image && (
                       <>
-                        <div
-                          className="card-bg-image hover-zoom-image position-absolute top-0 start-0 w-100 h-100"
+                        <img
+                          src={service.image}
+                          alt={service.title}
+                          className="hover-zoom-image position-absolute top-0 start-0 w-100 h-100 object-fit-cover"
                           style={{
-                            backgroundImage: `url('${service.image}')`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center',
-                            zIndex: 0
+                            zIndex: 0,
+                            transition: 'transform 0.5s ease'
                           }}
+                          loading="lazy"
                         />
                         <div
                           className="position-absolute top-0 start-0 w-100 h-100"

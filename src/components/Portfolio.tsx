@@ -1,10 +1,30 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Youtube, Volume2, VolumeX } from 'lucide-react';
 
 const ProjectCard = ({ project, activeTab, idx }: { project: any, activeTab: string, idx: number }) => {
   const [isMuted, setIsMuted] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const toggleMute = () => {
     if (iframeRef.current && iframeRef.current.contentWindow) {
@@ -14,10 +34,11 @@ const ProjectCard = ({ project, activeTab, idx }: { project: any, activeTab: str
     }
   };
 
-  const videoUrl = project.videoUrl ? `${project.videoUrl}&enablejsapi=1` : '';
+  const videoUrl = project.videoUrl && isVisible ? `${project.videoUrl}&enablejsapi=1` : '';
 
   return (
     <motion.div
+      ref={containerRef}
       key={`${activeTab}-${idx}`}
       initial={{ opacity: 0, scale: 0.95, y: 30 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -26,7 +47,7 @@ const ProjectCard = ({ project, activeTab, idx }: { project: any, activeTab: str
       className="col-md-6 col-lg-4"
     >
       <div className="glass-card overflow-hidden h-100 p-0 border-0 shadow-lg d-flex flex-column position-relative">
-        {project.videoUrl && (
+        {project.videoUrl && isVisible && (
           <button 
             onClick={toggleMute} 
             className="position-absolute top-0 end-0 m-3 btn btn-glass btn-sm rounded-circle p-2 d-flex align-items-center justify-content-center" 
@@ -39,38 +60,42 @@ const ProjectCard = ({ project, activeTab, idx }: { project: any, activeTab: str
         {activeTab === 'web' ? (
           <div className="flex-grow-1 d-flex flex-column justify-content-center align-items-center p-4" style={{ background: 'rgba(0,0,0,0.4)', minHeight: '260px' }}>
             <div className="monitor-mockup group w-100" style={{ maxWidth: '320px' }}>
-              <div className="ratio ratio-16x9 monitor-screen">
-                {/* @ts-ignore */}
-                <iframe
-                  ref={iframeRef}
-                  src={videoUrl}
-                  title={project.title}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  style={{ pointerEvents: 'none', width: '100%', height: '100%', top: 0, left: 0, position: 'absolute' }}
-                ></iframe>
+              <div className="ratio ratio-16x9 monitor-screen" style={{ background: '#111' }}>
+                {videoUrl ? (
+                  <iframe
+                    ref={iframeRef}
+                    src={videoUrl}
+                    title={project.title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    style={{ pointerEvents: 'none', width: '100%', height: '100%', top: 0, left: 0, position: 'absolute' }}
+                  ></iframe>
+                ) : (
+                  <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+                    <img src={project.thumb} alt={project.title} className="w-100 h-100 object-fit-cover opacity-20" loading="lazy" />
+                  </div>
+                )}
               </div>
             </div>
             <div className="monitor-stand"></div>
             <div className="monitor-base mb-2"></div>
           </div>
         ) : (
-          <div className="ratio ratio-16x9 position-relative overflow-hidden group">
-            {/* @ts-ignore */}
-            {project.videoUrl ? (
-              <iframe
-                ref={iframeRef}
-                src={videoUrl}
-                title={project.title}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                style={{ pointerEvents: 'none', width: '150%', height: '150%', top: '-25%', left: '-25%', position: 'absolute' }}
-              ></iframe>
+          <div className="ratio ratio-16x9 position-relative overflow-hidden group" style={{ background: '#111' }}>
+            {videoUrl ? (
+               <iframe
+               ref={iframeRef}
+               src={videoUrl}
+               title={project.title}
+               frameBorder="0"
+               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+               allowFullScreen
+               style={{ pointerEvents: 'none', width: '150%', height: '150%', top: '-25%', left: '-25%', position: 'absolute' }}
+             ></iframe>
             ) : (
               <>
-                <img src={project.thumb} alt={project.title} className="object-fit-cover transition-transform duration-700 hover-scale-110" style={{ transition: 'transform 0.7s ease' }} />
+                <img src={project.thumb} alt={project.title} className="object-fit-cover w-100 h-100 transition-transform duration-700 hover-scale-110" style={{ transition: 'transform 0.7s ease' }} loading="lazy" />
                 <div className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center opacity-0 hover-opacity-100 transition-opacity" style={{ background: 'rgba(0, 0, 0, 0.7)', backdropFilter: 'blur(4px)' }}>
                   <button className="btn btn-glass">View Project</button>
                 </div>
