@@ -7,7 +7,7 @@ import './Navbar.css';
 const Navbar = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  
+
   const navItems = [
     { label: 'Home', href: '#', id: 'hero' },
     { label: 'About Us', href: '#about', id: 'about' },
@@ -36,7 +36,7 @@ const Navbar = () => {
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
-    
+
     navItems.forEach(item => {
       const element = document.getElementById(item.id);
       if (element) observer.observe(element);
@@ -63,7 +63,7 @@ const Navbar = () => {
 
   return (
     <>
-      <motion.nav 
+      <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         className="navbar navbar-expand-lg fixed-top"
@@ -79,13 +79,14 @@ const Navbar = () => {
           {/* Logo/Brand for Mobile */}
           <div className="d-lg-none">
             <span className="text-white fw-bold orbitron" style={{ fontSize: '1.2rem', letterSpacing: '2px' }}>
-              EXORA
+
+              Code • Create • Capture
             </span>
           </div>
 
           {/* Desktop Nav */}
           <div className="d-none d-lg-flex justify-content-center w-100 desktop-nav">
-            <GooeyNav 
+            <GooeyNav
               items={navItems}
               activeIndex={activeIndex}
               onActiveChange={setActiveIndex}
@@ -100,7 +101,7 @@ const Navbar = () => {
 
           {/* Mobile Toggle */}
           <div className="d-lg-none mobile-nav-toggle">
-            <button 
+            <button
               className="hamburger-btn"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
