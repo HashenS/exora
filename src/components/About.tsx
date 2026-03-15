@@ -3,16 +3,14 @@ import ProfileCard from './ProfileCard';
 
 export default function About() {
   return (
-    <section id="about" className="py-32 relative overflow-hidden bg-black">
-      {/* Clean Background */}
-
-      <div className="container mx-auto px-6 relative z-10">
+    <section id="about" className="py-5 position-relative overflow-hidden bg-black" style={{ paddingTop: '120px', paddingBottom: '120px' }}>
+      <div className="container position-relative" style={{ zIndex: 10 }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-5"
         >
           <h2 className="display-4 fw-bold text-white mb-3">
             About <span className="text-gradient">Us</span>
