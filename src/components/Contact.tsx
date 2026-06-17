@@ -1,9 +1,17 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, Youtube, MessageCircle, Send, CheckCircle2 } from 'lucide-react';
+import { z } from 'zod';
+
+const contactSchema = z.object({
+  name: z.string().min(2, { message: 'Name must be at least 2 characters' }),
+  email: z.string().email({ message: 'Invalid email address' }),
+  message: z.string().min(10, { message: 'Message must be at least 10 characters' }),
+});
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
 
   const socials = [
@@ -15,7 +23,18 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
+    setErrors({});
+
+    const result = contactSchema.safeParse(formData);
+    if (!result.success) {
+      const fieldErrors: { name?: string; email?: string; message?: string } = {};
+      result.error.issues.forEach((issue) => {
+        const path = issue.path[0] as keyof typeof fieldErrors;
+        fieldErrors[path] = issue.message;
+      });
+      setErrors(fieldErrors);
+      return;
+    }
     
     setStatus('submitting');
 
@@ -124,12 +143,16 @@ const Contact = () => {
                             className="form-control bg-transparent text-white border-0 border-bottom rounded-0 px-0" 
                             id="name" 
                             placeholder="John Doe" 
-                            required
                             value={formData.name}
                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                             style={{ borderBottom: '1px solid var(--glass-border) !important' }} 
                           />
                           <label htmlFor="name" className="text-secondary small px-0">Full Name</label>
+                          {errors.name && (
+                            <div className="text-danger mt-1 text-start" style={{ fontSize: '0.75rem' }}>
+                              {errors.name}
+                            </div>
+                          )}
                         </div>
                       </div>
                       <div className="col-md-6">
@@ -139,12 +162,16 @@ const Contact = () => {
                             className="form-control bg-transparent text-white border-0 border-bottom rounded-0 px-0" 
                             id="email" 
                             placeholder="name@example.com" 
-                            required
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                             style={{ borderBottom: '1px solid var(--glass-border) !important' }} 
                           />
                           <label htmlFor="email" className="text-secondary small px-0">Email Address</label>
+                          {errors.email && (
+                            <div className="text-danger mt-1 text-start" style={{ fontSize: '0.75rem' }}>
+                              {errors.email}
+                            </div>
+                          )}
                         </div>
                       </div>
                       <div className="col-12">
@@ -153,12 +180,16 @@ const Contact = () => {
                             className="form-control bg-transparent text-white border-0 border-bottom rounded-0 px-0" 
                             id="message" 
                             placeholder="Your Message" 
-                            required
                             value={formData.message}
                             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                             style={{ height: '150px', borderBottom: '1px solid var(--glass-border) !important' }}
                           ></textarea>
                           <label htmlFor="message" className="text-secondary small px-0">Brief Project Overview</label>
+                          {errors.message && (
+                            <div className="text-danger mt-1 text-start" style={{ fontSize: '0.75rem' }}>
+                              {errors.message}
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
